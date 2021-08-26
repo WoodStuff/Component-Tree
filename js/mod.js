@@ -1,20 +1,20 @@
 let modInfo = {
-	name: "The Minigame Tree",
-	id: "minigametreemod",
-	author: "nirmoll",
-	pointsName: "points",
-	modFiles: ["layers.js", "tree.js"],
+	name: 'The Component Tree',
+	id: 'componenttreemod',
+	author: 'nirmoll',
+	pointsName: 'points',
+	modFiles: ['layers/p.js', 'layers/u.js', 'layers/m.js', 'tree.js'],
 
-	discordName: "",
-	discordLink: "",
+	discordName: '',
+	discordLink: '',
 	initialStartPoints: new Decimal(10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: '0.0',
+	name: 'Literally nothing',
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -26,15 +26,15 @@ let winText = `Congratulations! You have reached the end and beaten this game, b
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
-var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
+var doNotCallTheseFunctionsEveryTick = ['blowUpEverything'];
 
-function getStartPoints(){
-    return new Decimal(modInfo.initialStartPoints)
+function getStartPoints() {
+    return new Decimal(modInfo.initialStartPoints);
 }
 
 // Determines if it should show points/sec
-function canGenPoints(){
-	return false;
+function canGenPoints() {
+	return hasUpgrade('p', 11);
 }
 
 // Calculate points/sec!
@@ -42,20 +42,28 @@ function getPointGen() {
 	if (!canGenPoints()) return new Decimal(0);
 
 	let gain = new Decimal(1);
+
+	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12));
+	if (hasUpgrade('p', 21)) gain = gain.times(upgradeEffect('p', 13));
+	if (hasUpgrade('p', 22)) gain = gain.times(upgradeEffect('p', 14));
+
+	if (hasUpgrade('u', 11)) gain = gain.times(upgradeEffect('u', 11));
+	if (hasUpgrade('u', 12)) gain = gain.times(4);
+
 	return gain;
 }
 
-// You can add non-layer related variables that should to into "player" and be saved here, along with default values
+// You can add non-layer related variables that should to into 'player' and be saved here, along with default values
 function addedPlayerData() { return {
-}}
+} }
 
 // Display extra things at the top of the page
 var displayThings = [
 ]
 
-// Determines when the game "ends"
+// Determines when the game 'ends'
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"));
+	return player.points.gte(new Decimal('e280000000'));
 }
 
 
