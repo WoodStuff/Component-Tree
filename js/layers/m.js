@@ -27,7 +27,7 @@ addLayer('m', {
 	hotkeys: [
 		{ key: 'm', description: 'M: Reset for milestone cubes', onPress() { if (canReset(this.layer)) doReset(this.layer) } },
 	],
-	layerShown() { return hasUpgrade('p', 14) || player.m.unlocked },
+	layerShown() { return hasUpgrade('p', 22) || player.m.unlocked || player.u.unlocked },
 	milestones: {
 		0: {
 			requirementDescription: '1 milestone cube',

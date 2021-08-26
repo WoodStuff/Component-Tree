@@ -16,7 +16,7 @@ addLayer('p', {
 	passiveGeneration() { return hasMilestone('m', 0) ? 0.1 : 0 },
 	gainMult() { // Calculate the multiplier for main currency from bonuses
 		mult = new Decimal(1);
-		if (hasUpgrade('p', 22)) mult = mult.times(upgradeEffect('p', 14));
+		if (hasUpgrade('p', 22)) mult = mult.times(upgradeEffect('p', 22));
 		return mult;
 	},
 	gainExp() { // Calculate the exponent on main currency from bonuses
@@ -48,25 +48,25 @@ addLayer('p', {
 		21: {
 			title: 'P21',
 			description: 'Points boost themselves',
-			cost: new Decimal(1),
+			cost: new Decimal(2),
 			unlocked() { return hasUpgrade('p', 12) },
 			effect() {
 				return player.points.add(1).pow(0.15);
 			},
 			effectDisplay() {
-				return `${format(upgradeEffect('p', 13))}x`
+				return `${format(upgradeEffect('p', 21))}x`
 			},
 		},
 		22: {
 			title: 'P22',
 			description: 'Amount of prestige upgrades bought boosts point and prestige point gain',
-			cost: new Decimal(3),
-			unlocked() { return hasUpgrade('p', 13) },
+			cost: new Decimal(5),
+			unlocked() { return hasUpgrade('p', 21) },
 			effect() {
 				return new Decimal(player.p.upgrades.length).add(1).sqrt();
 			},
 			effectDisplay() {
-				return `${format(upgradeEffect('p', 14))}x`
+				return `${format(upgradeEffect('p', 22))}x`
 			},
 		},
 	},

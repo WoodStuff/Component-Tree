@@ -25,11 +25,11 @@ addLayer('u', {
 	hotkeys: [
 		{ key: 'u', description: 'U: Reset for upgrade particles', onPress() { if (canReset(this.layer)) doReset(this.layer) } },
 	],
-	layerShown() { return hasUpgrade('p', 14) || player.u.unlocked },
+	layerShown() { return hasUpgrade('p', 22) || player.u.unlocked || player.m.unlocked },
 	upgrades: {
 		11: {
 			title: 'U11',
-			description: 'Upgrade particles boost point gain',
+			description: 'Upgrade points boost point gain',
 			cost: new Decimal(1),
 			effect() {
 				return player.u.points.add(3).sqrt();
