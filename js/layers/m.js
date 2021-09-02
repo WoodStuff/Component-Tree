@@ -31,18 +31,8 @@ addLayer('m', {
 	milestones: {
 		0: {
 			requirementDescription: '1 milestone cube',
-			effectDescription: 'Gain 10% of your prestige point gain per second',
+			effectDescription: 'Point and prestige point gain x1.3',
 			done() { return player.m.total.gte(1) },
-		},
-		1: {
-			requirementDescription: '2 milestone cubes',
-			effectDescription: 'Unlock a new row of prestige upgrades',
-			done() { return player.m.total.gte(2) },
-		},
-		2: {
-			requirementDescription: '3 milestone cubes',
-			effectDescription: 'Keep prestige upgrades on row 2 reset',
-			done() { return player.m.total.gte(3) },
 		},
 	},
 });

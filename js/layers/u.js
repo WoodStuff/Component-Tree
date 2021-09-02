@@ -40,8 +40,14 @@ addLayer('u', {
 		},
 		12: {
 			title: 'U12',
-			description: 'Multiply point gain by 4',
+			description: 'Milestone cubes boost point gain',
 			cost: new Decimal(1),
+			effect() {
+				return player.m.points.add(2).sqrt();
+			},
+			effectDisplay() {
+				return `${format(upgradeEffect('u', 12))}x`
+			},
 			unlocked() { return hasUpgrade('u', 11) },
 		},
 	},

@@ -50,6 +50,8 @@ function getPointGen() {
 	if (hasUpgrade('u', 11)) gain = gain.times(upgradeEffect('u', 11));
 	if (hasUpgrade('u', 12)) gain = gain.times(4);
 
+	if (hasMilestone('m', 0)) gain = gain.times(1.3);
+
 	return gain;
 }
 
